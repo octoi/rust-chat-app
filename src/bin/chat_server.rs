@@ -23,7 +23,7 @@ fn main() {
             clients.push(socket.try_clone().expect("Failed to clone client"));
 
             thread::spawn(move || loop {
-                let mut buff = vec![0: MSG_SIZE];
+                let mut buff = vec![0; MSG_SIZE];
 
                 match socket.read_exact(&mut buff) {
                     Ok(_) => {
@@ -41,7 +41,7 @@ fn main() {
                 }
 
                 sleep();
-            })
+            });
         }
 
         if let Ok(msg) = rx.try_recv() {
